@@ -8,12 +8,12 @@ from urllib.parse import urlparse
 
 # cache at current directory
 CACHE_DIR = Path(__file__).parent / "cache"
-HOST_URL = os.getenv("HOST_URL")
-API_URL = f"{HOST_URL}/api/v1/bookmarks"
-API_KEY = os.getenv("API_KEY")
+HOARDER_SERVER_ADDR = os.getenv("HOARDER_SERVER_ADDR")
+HORADER_API_URL = f"{HOARDER_SERVER_ADDR}/api/v1/bookmarks"
+HOARDER_API_KEY = os.getenv("HOARDER_API_KEY")
 HEADERS = {
     "Accept": "application/json",
-    "Authorization": f"Bearer {API_KEY}"
+    "Authorization": f"Bearer {HOARDER_API_KEY}"
 }
 
 def ensure_cache_dir():
@@ -54,7 +54,7 @@ def fetch_bookmarks():
 
         ensure_cache_dir()
         
-        response = requests.get(API_URL, headers=HEADERS, params=params)
+        response = requests.get(HORADER_API_URL, headers=HEADERS, params=params)
         response.raise_for_status()
         data = response.json()
         # print actual data structure
