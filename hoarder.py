@@ -76,10 +76,17 @@ def fetch_bookmarks():
                              bookmark.get("title") or 
                              "Untitled"),
                     "subtitle": bookmark.get("content", {}).get("url", ""),
-                    "arg": bookmark.get("id"),
-                    "icon": {
-                        "path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
+                    "arg": bookmark.get("url"),
+                    "mods": {
+                        "cmd": {
+                            "arg": bookmark.get("id")
+                        }
                     },
+                    "icon": {
+                        #"path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
+                        "path": "icon.png"
+                    },
+                    "quicklookurl": bookmark.get("content", {}).get("url"),
                     # create match text, include title, url, description and html content and tags
                     "match": " ".join(filter(None, [
                         bookmark.get("content", {}).get("title", ""),
@@ -142,11 +149,19 @@ def search_bookmarks(query=""):
                     "title": (bookmark.get("content", {}).get("title") or 
                              bookmark.get("title") or 
                              "Untitled"),
+                    # Show the URL in the subtitle
                     "subtitle": bookmark.get("content", {}).get("url", ""),
-                    "arg": bookmark.get("id"),
-                    "icon": {
-                        "path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
+                    "arg": bookmark.get("url"),
+                    "mods": {
+                        "cmd": {
+                            "arg": bookmark.get("id")
+                        }
                     },
+                    "icon": {
+                        #"path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
+                        "path": "icon.png"
+                    },
+                    "quicklookurl": bookmark.get("content", {}).get("url"),
                     # create match text, include title, url, description and html content and tags
                     "match": " ".join(filter(None, [
                         bookmark.get("content", {}).get("title", ""),
