@@ -6,6 +6,19 @@
 	<string>com.yinanchen.hoarder</string>
 	<key>connections</key>
 	<dict>
+		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1AFBA318-1D54-4312-94C6-0563C26A6027</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</key>
 		<array>
 			<dict>
@@ -184,6 +197,52 @@
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>hoard</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string></string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2D1103F3-E2F6-4AF1-971C-F68B287327B6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
+
+/usr/bin/python3 hoard.py "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1AFBA318-1D54-4312-94C6-0563C26A6027</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Hoarder Workflow
@@ -200,7 +259,21 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>xpos</key>
 			<real>140</real>
 			<key>ypos</key>
-			<real>290</real>
+			<real>215</real>
+		</dict>
+		<key>1AFBA318-1D54-4312-94C6-0563C26A6027</key>
+		<dict>
+			<key>xpos</key>
+			<real>430</real>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
+		<dict>
+			<key>xpos</key>
+			<real>140</real>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>D9031B8B-4F98-42C5-8756-F39444B1DD7F</key>
 		<dict>
@@ -221,7 +294,7 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>xpos</key>
 			<real>140</real>
 			<key>ypos</key>
-			<real>130</real>
+			<real>75</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -241,7 +314,7 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Keyword</string>
+			<string>Search Keyword</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
