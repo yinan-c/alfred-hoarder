@@ -191,7 +191,6 @@ def search_bookmarks(query=""):
             }
         }
         
-        # URL encode the JSON payload
         encoded_input = quote(json.dumps(search_input))
         search_url = f"{HOARDER_SEARCH_API_URL}?batch=1&input={encoded_input}"
         
@@ -202,34 +201,24 @@ def search_bookmarks(query=""):
         # Extract bookmarks from the search response
         bookmarks = data[0]["result"]["data"]["json"]["bookmarks"] if data else []
         
-        # Format bookmarks for Alfred feedback
+        # Use the same format as fetch_bookmarks
         alfred_feedback = {
             "items": [
                 {
                     "title": format_title_with_tags(bookmark),
-                    "subtitle": f"{bookmark.get('content', {}).get('url', '')}",# - {bookmark.get('content', {}).get('description', '')}" if bookmark.get('content', {}).get('description') else bookmark.get('content', {}).get('url', ''),
-                    "arg": bookmark.get("content", {}).get("url", ""),
+                    "subtitle": (bookmark.get("content", {}).get("url", "") or 
+                               bookmark.get("content", {}).get("text", "") or 
+                               bookmark.get("content", {}).get("fileName", "")),
+                    "arg": get_arg_and_icon(bookmark)[0],
                     "mods": {
                         "cmd": {
                             "arg": HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
                         }
                     },
                     "icon": {
-                        #"path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
-                        "path": "icon.png"
+                        "path": get_arg_and_icon(bookmark)[1]
                     },
-                    "quicklookurl": bookmark.get("content", {}).get("url"),
-                    # create match text, include title, url, description and html content and tags
-                    #"match": " ".join(filter(None, [
-                    #    bookmark.get("content", {}).get("title", ""),
-                    #    bookmark.get("content", {}).get("url", ""),
-                    #    bookmark.get("content", {}).get("description", ""),
-                    #    bookmark.get("content", {}).get("htmlContent", ""),
-                    #    bookmark.get("note", ""),
-                    #    bookmark.get("summary", ""),
-                    #    # join tags with space
-                    #    " ".join(tag.get("name", "") for tag in bookmark.get("tags", []))
-                    #])).replace('/', ' ').replace('-', ' ').replace('_', ' ')
+                    "quicklookurl": bookmark.get("content", {}).get("url")
                 } for bookmark in bookmarks
             ]
         }
