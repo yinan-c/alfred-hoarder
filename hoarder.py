@@ -78,7 +78,18 @@ def fetch_bookmarks():
                     "arg": bookmark.get("id"),
                     "icon": {
                         "path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
-                    }
+                    },
+                    # create match text, include title, url, description and html content and tags
+                    "match": " ".join(filter(None, [
+                        bookmark.get("content", {}).get("title", ""),
+                        bookmark.get("content", {}).get("url", ""),
+                        bookmark.get("content", {}).get("description", ""),
+                        bookmark.get("content", {}).get("htmlContent", ""),
+                        bookmark.get("note", ""),
+                        bookmark.get("summary", ""),
+                        # join tags with space
+                        " ".join(tag.get("name", "") for tag in bookmark.get("tags", []))
+                    ])).replace('/', ' ').replace('-', ' ').replace('_', ' ')
                 } for bookmark in bookmarks
             ]
         }
