@@ -6,6 +6,19 @@
 	<string>com.yinanchen.hoarder</string>
 	<key>connections</key>
 	<dict>
+		<key>1AFBA318-1D54-4312-94C6-0563C26A6027</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
 		<array>
 			<dict>
@@ -200,27 +213,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>hoard</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string></string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>2D1103F3-E2F6-4AF1-971C-F68B287327B6</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -243,6 +235,48 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>hoard</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Add to Hoarder</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2D1103F3-E2F6-4AF1-971C-F68B287327B6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Hoarder Workflow
@@ -250,6 +284,8 @@
 Hoarder is a self-hosted bookmark app with Al automatic tagging and full text search.
 
 This workflow requires Hoarder API to work. It can list and full text search your bookmarks based on title, tags, description, htmlContent and note!
+
+`Hoarder` to search, `Hoard` to hoard.
 
 Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 	<key>uidata</key>
@@ -272,6 +308,13 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 		<dict>
 			<key>xpos</key>
 			<real>140</real>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</key>
+		<dict>
+			<key>xpos</key>
+			<real>680</real>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
@@ -314,11 +357,32 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Search Keyword</string>
+			<string>Keyword to Search</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
 			<string>key</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>hoard</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Keyword to Add</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>add_key</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -335,7 +399,7 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Hoarder Server URL</string>
+			<string>Hoarder URL</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
