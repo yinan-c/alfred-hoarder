@@ -12,7 +12,7 @@
 				<key>destinationuid</key>
 				<string>D9031B8B-4F98-42C5-8756-F39444B1DD7F</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string>Open in Hoarder</string>
 				<key>vitoclose</key>
@@ -22,9 +22,9 @@
 				<key>destinationuid</key>
 				<string>E2FD313E-C9FC-4852-953B-F60565F762F7</string>
 				<key>modifiers</key>
-				<integer>0</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string></string>
+				<string>Open in Hoarder</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -52,7 +52,7 @@
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
-				<string>{var:HOARDER_SERVER_ADDR}/dashboard/preview/{query}</string>
+				<string>{query}</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
@@ -232,6 +232,8 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<string>TAGS_SHOWN_COUNT</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
 	<string>1.0</string>
 	<key>webaddress</key>
