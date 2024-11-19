@@ -16,6 +16,7 @@ HEADERS = {
     "Accept": "application/json",
     "Authorization": f"Bearer {HOARDER_API_KEY}"
 }
+TAGS_SHOWN_COUNT = int(os.getenv("TAGS_SHOWN_COUNT", "0"))
 
 def ensure_cache_dir():
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -45,6 +46,21 @@ def get_favicon_path(favicon_url):
         print(f"Error downloading favicon: {e}", file=sys.stderr)
         return "icon.png"
 
+def format_title_with_tags(bookmark):
+    """Format title with tags based on TAGS_SHOWN_COUNT"""
+    title = (bookmark.get("content", {}).get("title") or 
+             bookmark.get("title") or 
+             "Untitled")
+    
+    if TAGS_SHOWN_COUNT > 0:
+        tags = bookmark.get("tags", [])
+        if tags:
+            shown_tags = tags[:TAGS_SHOWN_COUNT]
+            tags_string = " " + ", ".join(f"#{tag.get('name', '')}" for tag in shown_tags if tag.get('name'))
+            title = f"{title}{tags_string}"
+    
+    return title
+
 def fetch_bookmarks():
     try:
         # add pagination params
@@ -72,11 +88,9 @@ def fetch_bookmarks():
         alfred_feedback = {
             "items": [
                 {
-                    "title": (bookmark.get("content", {}).get("title") or 
-                             bookmark.get("title") or 
-                             "Untitled"),
+                    "title": format_title_with_tags(bookmark),
                     "subtitle": bookmark.get("content", {}).get("url", ""),
-                    "arg": bookmark.get("url"),
+                    "arg": bookmark.get("content", {}).get("url", ""),
                     "mods": {
                         "cmd": {
                             "arg": bookmark.get("id")
@@ -88,16 +102,16 @@ def fetch_bookmarks():
                     },
                     "quicklookurl": bookmark.get("content", {}).get("url"),
                     # create match text, include title, url, description and html content and tags
-                    "match": " ".join(filter(None, [
-                        bookmark.get("content", {}).get("title", ""),
-                        bookmark.get("content", {}).get("url", ""),
-                        bookmark.get("content", {}).get("description", ""),
-                        bookmark.get("content", {}).get("htmlContent", ""),
-                        bookmark.get("note", ""),
-                        bookmark.get("summary", ""),
-                        # join tags with space
-                        " ".join(tag.get("name", "") for tag in bookmark.get("tags", []))
-                    ])).replace('/', ' ').replace('-', ' ').replace('_', ' ')
+                    #"match": " ".join(filter(None, [
+                    #    bookmark.get("content", {}).get("title", ""),
+                    #    bookmark.get("content", {}).get("url", ""),
+                    #    bookmark.get("content", {}).get("description", ""),
+                    #    bookmark.get("content", {}).get("htmlContent", ""),
+                    #    bookmark.get("note", ""),
+                    #    bookmark.get("summary", ""),
+                    #    # join tags with space
+                    #    " ".join(tag.get("name", "") for tag in bookmark.get("tags", []))
+                    #])).replace('/', ' ').replace('-', ' ').replace('_', ' ')
                 } for bookmark in bookmarks
             ]
         }
@@ -146,12 +160,9 @@ def search_bookmarks(query=""):
         alfred_feedback = {
             "items": [
                 {
-                    "title": (bookmark.get("content", {}).get("title") or 
-                             bookmark.get("title") or 
-                             "Untitled"),
-                    # Show the URL in the subtitle
+                    "title": format_title_with_tags(bookmark),
                     "subtitle": bookmark.get("content", {}).get("url", ""),
-                    "arg": bookmark.get("url"),
+                    "arg": bookmark.get("content", {}).get("url", ""),
                     "mods": {
                         "cmd": {
                             "arg": bookmark.get("id")
@@ -163,16 +174,16 @@ def search_bookmarks(query=""):
                     },
                     "quicklookurl": bookmark.get("content", {}).get("url"),
                     # create match text, include title, url, description and html content and tags
-                    "match": " ".join(filter(None, [
-                        bookmark.get("content", {}).get("title", ""),
-                        bookmark.get("content", {}).get("url", ""),
-                        bookmark.get("content", {}).get("description", ""),
-                        bookmark.get("content", {}).get("htmlContent", ""),
-                        bookmark.get("note", ""),
-                        bookmark.get("summary", ""),
-                        # join tags with space
-                        " ".join(tag.get("name", "") for tag in bookmark.get("tags", []))
-                    ])).replace('/', ' ').replace('-', ' ').replace('_', ' ')
+                    #"match": " ".join(filter(None, [
+                    #    bookmark.get("content", {}).get("title", ""),
+                    #    bookmark.get("content", {}).get("url", ""),
+                    #    bookmark.get("content", {}).get("description", ""),
+                    #    bookmark.get("content", {}).get("htmlContent", ""),
+                    #    bookmark.get("note", ""),
+                    #    bookmark.get("summary", ""),
+                    #    # join tags with space
+                    #    " ".join(tag.get("name", "") for tag in bookmark.get("tags", []))
+                    #])).replace('/', ' ').replace('-', ' ').replace('_', ' ')
                 } for bookmark in bookmarks
             ]
         }
