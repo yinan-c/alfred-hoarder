@@ -4,12 +4,13 @@ import sys
 import os
 import hashlib
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, quote
 
 # cache at current directory
 CACHE_DIR = Path(__file__).parent / "cache"
 HOARDER_SERVER_ADDR = os.getenv("HOARDER_SERVER_ADDR")
 HORADER_API_URL = f"{HOARDER_SERVER_ADDR}/api/v1/bookmarks"
+HOARDER_SEARCH_API_URL = f"{HOARDER_SERVER_ADDR}/api/trpc/bookmarks.searchBookmarks"
 HOARDER_API_KEY = os.getenv("HOARDER_API_KEY")
 HEADERS = {
     "Accept": "application/json",
@@ -48,7 +49,7 @@ def fetch_bookmarks():
     try:
         # add pagination params
         params = {
-            'limit': 100,  # or larger number
+            'limit': 20,  # or larger number
             'page': 1      # or use offset: 0
         }
 
@@ -103,7 +104,74 @@ def fetch_bookmarks():
                     "title": "Error fetching bookmarks",
                     "subtitle": str(e),
                     "icon": {
-                        "path": "error_icon.png"
+                        "path": "icon.png"
+                    }
+                }
+            ]
+        }))
+        sys.exit(1)
+
+def search_bookmarks(query=""):
+    try:
+        ensure_cache_dir()
+        
+        # Construct the search payload
+        search_input = {
+            "0": {
+                "json": {
+                    "text": query
+                }
+            }
+        }
+        
+        # URL encode the JSON payload
+        encoded_input = quote(json.dumps(search_input))
+        search_url = f"{HOARDER_SEARCH_API_URL}?batch=1&input={encoded_input}"
+        
+        response = requests.get(search_url, headers=HEADERS)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Extract bookmarks from the search response
+        bookmarks = data[0]["result"]["data"]["json"]["bookmarks"] if data else []
+        
+        # Format bookmarks for Alfred feedback
+        alfred_feedback = {
+            "items": [
+                {
+                    "title": (bookmark.get("content", {}).get("title") or 
+                             bookmark.get("title") or 
+                             "Untitled"),
+                    "subtitle": bookmark.get("content", {}).get("url", ""),
+                    "arg": bookmark.get("id"),
+                    "icon": {
+                        "path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
+                    },
+                    # create match text, include title, url, description and html content and tags
+                    "match": " ".join(filter(None, [
+                        bookmark.get("content", {}).get("title", ""),
+                        bookmark.get("content", {}).get("url", ""),
+                        bookmark.get("content", {}).get("description", ""),
+                        bookmark.get("content", {}).get("htmlContent", ""),
+                        bookmark.get("note", ""),
+                        bookmark.get("summary", ""),
+                        # join tags with space
+                        " ".join(tag.get("name", "") for tag in bookmark.get("tags", []))
+                    ])).replace('/', ' ').replace('-', ' ').replace('_', ' ')
+                } for bookmark in bookmarks
+            ]
+        }
+        
+        print(json.dumps(alfred_feedback))
+
+    except requests.exceptions.RequestException as e:
+        print(json.dumps({
+            "items": [
+                {
+                    "title": "Error searching bookmarks",
+                    "subtitle": str(e),
+                    "icon": {
+                        "path": "icon.png"
                     }
                 }
             ]
@@ -111,5 +179,10 @@ def fetch_bookmarks():
         sys.exit(1)
 
 if __name__ == "__main__":
-    fetch_bookmarks()
-
+    # Get search query from command line argument if provided
+    #fetch_bookmarks()
+    query = sys.argv[1] if len(sys.argv) > 1 else ""
+    if not query:
+        fetch_bookmarks()
+        sys.exit(0)
+    search_bookmarks(query)

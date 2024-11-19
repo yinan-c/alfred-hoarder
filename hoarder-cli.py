@@ -52,7 +52,7 @@ def fetch_bookmarks():
                         "title": "Hoarder CLI not found",
                         "subtitle": "Please install hoarder CLI first: npm install -g @hoarderapp/cli",
                         "icon": {
-                            "path": "error_icon.png"
+                            "path": "icon.png"
                         }
                     }
                 ]
@@ -101,7 +101,7 @@ def fetch_bookmarks():
                     "title": "Error running hoarder CLI",
                     "subtitle": f"Error: {e.stderr}",
                     "icon": {
-                        "path": "error_icon.png"
+                        "path": "icon.png"
                     }
                 }
             ]
@@ -114,7 +114,7 @@ def fetch_bookmarks():
                     "title": "Error parsing CLI output",
                     "subtitle": str(e),
                     "icon": {
-                        "path": "error_icon.png"
+                        "path": "icon.png"
                     }
                 }
             ]
