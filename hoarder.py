@@ -35,16 +35,17 @@ def get_favicon_path(favicon_url):
     if cache_path.exists() and cache_path.stat().st_size > 0:
         return str(cache_path)
     
+    return "icon.png"
     # download favicon
-    try:
-        response = requests.get(favicon_url, timeout=5)
-        response.raise_for_status()
-        with open(cache_path, 'wb') as f:
-            f.write(response.content)
-        return str(cache_path)
-    except Exception as e:
-        print(f"Error downloading favicon: {e}", file=sys.stderr)
-        return "icon.png"
+    #try:
+    #    response = requests.get(favicon_url, timeout=5)
+    #    response.raise_for_status()
+    #    with open(cache_path, 'wb') as f:
+    #        f.write(response.content)
+    #    return str(cache_path)
+    #except Exception as e:
+    #    print(f"Error downloading favicon: {e}", file=sys.stderr)
+    #    return "icon.png"
 
 def get_thumbnail_path(asset_id):
     """Download and cache thumbnail for image assets"""
@@ -56,16 +57,17 @@ def get_thumbnail_path(asset_id):
     if cache_path.exists() and cache_path.stat().st_size > 0:
         return str(cache_path)
     
-    try:
-        thumbnail_url = f"{HOARDER_SERVER_ADDR}/api/assets/{asset_id}"
-        response = requests.get(thumbnail_url, headers=HEADERS, timeout=5)
-        response.raise_for_status()
-        with open(cache_path, 'wb') as f:
-            f.write(response.content)
-        return str(cache_path)
-    except Exception as e:
-        print(f"Error downloading thumbnail: {e}", file=sys.stderr)
-        return "icon.png"
+    return "icon.png"
+    #try:
+    #    thumbnail_url = f"{HOARDER_SERVER_ADDR}/api/assets/{asset_id}"
+    #    response = requests.get(thumbnail_url, headers=HEADERS, timeout=5)
+    #    response.raise_for_status()
+    #    with open(cache_path, 'wb') as f:
+    #        f.write(response.content)
+    #    return str(cache_path)
+    #except Exception as e:
+    #    print(f"Error downloading thumbnail: {e}", file=sys.stderr)
+    #    return "icon.png"
 
 def format_title_with_tags(bookmark):
     """Format title with tags based on TAGS_SHOWN_COUNT"""
@@ -102,7 +104,7 @@ def get_arg_and_icon(bookmark):
                     get_thumbnail_path(content.get("assetId")))
     else:
         arg = content.get("url", "")
-        icon_path = "icon.png"  # or get_favicon_path(content.get("favicon"))
+        icon_path = get_favicon_path(content.get("favicon"))
     
     return arg, icon_path
 
