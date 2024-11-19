@@ -46,11 +46,40 @@ def get_favicon_path(favicon_url):
         print(f"Error downloading favicon: {e}", file=sys.stderr)
         return "icon.png"
 
+def get_thumbnail_path(asset_id):
+    """Download and cache thumbnail for image assets"""
+    if not asset_id:
+        return "icon.png"
+    
+    cache_path = CACHE_DIR / f"thumb_{asset_id}.png"
+    
+    if cache_path.exists() and cache_path.stat().st_size > 0:
+        return str(cache_path)
+    
+    try:
+        thumbnail_url = f"{HOARDER_SERVER_ADDR}/api/assets/{asset_id}"
+        response = requests.get(thumbnail_url, headers=HEADERS, timeout=5)
+        response.raise_for_status()
+        with open(cache_path, 'wb') as f:
+            f.write(response.content)
+        return str(cache_path)
+    except Exception as e:
+        print(f"Error downloading thumbnail: {e}", file=sys.stderr)
+        return "icon.png"
+
 def format_title_with_tags(bookmark):
     """Format title with tags based on TAGS_SHOWN_COUNT"""
-    title = (bookmark.get("content", {}).get("title") or 
-             bookmark.get("title") or 
-             "Untitled")
+    content = bookmark.get("content", {})
+    content_type = content.get("type")
+    
+    if content_type == "text":
+        title = content.get("text", "Untitled Text")
+    elif content_type == "asset" and content.get("assetType") == "image":
+        title = content.get("fileName", "Untitled Image")
+    else:
+        title = (bookmark.get("content", {}).get("title") or 
+                bookmark.get("title") or 
+                "Untitled")
     
     if TAGS_SHOWN_COUNT > 0:
         tags = bookmark.get("tags", [])
@@ -60,6 +89,22 @@ def format_title_with_tags(bookmark):
             title = f"{title}{tags_string}"
     
     return title
+
+def get_arg_and_icon(bookmark):
+    """Get appropriate arg and icon path based on content type"""
+    content = bookmark.get("content", {})
+    content_type = content.get("type")
+    
+    if content_type == "text" or content_type == "asset":
+        #arg = bookmark.get("id", "")
+        arg = HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
+        icon_path = ("icon.png" if content_type == "text" else 
+                    get_thumbnail_path(content.get("assetId")))
+    else:
+        arg = content.get("url", "")
+        icon_path = "icon.png"  # or get_favicon_path(content.get("favicon"))
+    
+    return arg, icon_path
 
 def fetch_bookmarks():
     try:
@@ -89,16 +134,17 @@ def fetch_bookmarks():
             "items": [
                 {
                     "title": format_title_with_tags(bookmark),
-                    "subtitle": bookmark.get("content", {}).get("url", ""),
-                    "arg": bookmark.get("content", {}).get("url", ""),
+                    "subtitle": (bookmark.get("content", {}).get("url", "") or 
+                               bookmark.get("content", {}).get("text", "") or 
+                               bookmark.get("content", {}).get("fileName", "")),
+                    "arg": get_arg_and_icon(bookmark)[0],
                     "mods": {
                         "cmd": {
-                            "arg": bookmark.get("id")
+                            "arg": HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
                         }
                     },
                     "icon": {
-                        #"path": get_favicon_path(bookmark.get("content", {}).get("favicon"))
-                        "path": "icon.png"
+                        "path": get_arg_and_icon(bookmark)[1]
                     },
                     "quicklookurl": bookmark.get("content", {}).get("url"),
                     # create match text, include title, url, description and html content and tags
@@ -161,11 +207,11 @@ def search_bookmarks(query=""):
             "items": [
                 {
                     "title": format_title_with_tags(bookmark),
-                    "subtitle": bookmark.get("content", {}).get("url", ""),
+                    "subtitle": f"{bookmark.get('content', {}).get('url', '')}",# - {bookmark.get('content', {}).get('description', '')}" if bookmark.get('content', {}).get('description') else bookmark.get('content', {}).get('url', ''),
                     "arg": bookmark.get("content", {}).get("url", ""),
                     "mods": {
                         "cmd": {
-                            "arg": bookmark.get("id")
+                            "arg": HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
                         }
                     },
                     "icon": {
