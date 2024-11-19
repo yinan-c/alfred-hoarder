@@ -3,19 +3,70 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.yinanchen.hoarder</string>
 	<key>connections</key>
 	<dict/>
 	<key>createdby</key>
-	<string></string>
+	<string>Yinan Chen</string>
 	<key>description</key>
-	<string></string>
+	<string>Alfred workflow for Hoarder</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
 	<string>Hoarder</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>hoarderall</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching for bookmarks ...</string>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
+
+/usr/bin/python3 hoarder-cli.py</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>All bookmarks</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>92D4E6BF-B72C-4048-9C26-A68A5C1A1940</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -54,7 +105,7 @@
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>All bookmarks</string>
+				<string>Recent bookmarks</string>
 				<key>type</key>
 				<integer>5</integer>
 				<key>withspace</key>
@@ -63,7 +114,7 @@
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>92D4E6BF-B72C-4048-9C26-A68A5C1A1940</string>
+			<string>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -76,6 +127,13 @@
 		<dict>
 			<key>xpos</key>
 			<real>200</real>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</key>
+		<dict>
+			<key>xpos</key>
+			<real>415</real>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
@@ -97,11 +155,11 @@
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Hoarder Instance URL</string>
+			<string>Hoarder Server URL</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
-			<string>HOST_URL</string>
+			<string>HOARDER_SERVER_ADDR</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -122,12 +180,33 @@
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
-			<string>API_KEY</string>
+			<string>HOARDER_API_KEY</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>100</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Max 100, imit the number of bookmarks for quicker retriaval (Not all bookmarks will be shown and searched)</string>
+			<key>label</key>
+			<string>Limit</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>LIMIT</string>
 		</dict>
 	</array>
 	<key>version</key>
 	<string></string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/yinan-c/alfred-hoarder</string>
 </dict>
 </plist>
