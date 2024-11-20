@@ -8,8 +8,8 @@ This workflow requires Hoarder API to work. It can list and full text search you
 
 ![CleanShot 2024-11-19 at 20 29 16@2x](https://github.com/user-attachments/assets/e6572257-d523-4566-89ed-156150921503)
 
- - ⏎ : Open linkand
- - ⌥+⏎: Open in Hoarder
+ - ⏎ : Open link directly
+ - ⌥+⏎: Open in your Hoarder server
  - ⌘+enter: View and control (Favorite/Archive/Delete)
 
 ![CleanShot 2024-11-20 at 13 41 32@2x](https://github.com/user-attachments/assets/e5d381ea-cb84-479c-bdfe-8e9d7a8bfe2f)
