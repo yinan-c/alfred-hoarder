@@ -74,9 +74,7 @@ def format_title_with_tags(bookmark):
     content = bookmark.get("content", {})
     content_type = content.get("type")
     
-    if content_type == "text":
-        title = content.get("text", "Untitled Text")
-    elif content_type == "asset" and content.get("assetType") == "image":
+    if content_type == "asset" and content.get("assetType") == "image":
         title = content.get("fileName", "Untitled Image")
     else:
         title = (bookmark.get("content", {}).get("title") or 

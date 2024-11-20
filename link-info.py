@@ -16,14 +16,12 @@ def format_title_without_tags(bookmark):
     content = bookmark.get("content", {})
     content_type = content.get("type")
     
-    if content_type == "text":
-        title = content.get("text", "Untitled Text")
-    elif content_type == "asset" and content.get("assetType") == "image":
+    if content_type == "asset" and content.get("assetType") == "image":
         title = content.get("fileName", "Untitled Image")
     else:
         title = (bookmark.get("content", {}).get("title") or 
                 bookmark.get("title") or 
-                "Untitled")    
+                "Untitled")
     return title
 
 def get_bookmark_details(bookmark_id):
@@ -58,7 +56,9 @@ def format_alfred_output(bookmark):
         "arg": bookmark.get("content", {}).get("url", "") or f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}",
         "mods": {
             "cmd": {
-                "arg": HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
+                "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}",
+                ## THOUGHTS: I was thinking alfred textview to edit the title/text/note/summary, sticking with url for now
+                #"arg": bookmark.get("content", {}).get("text", "") if bookmark.get("content", {}).get("type") == "text" else f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
             },
             "option": {
                 "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
@@ -88,7 +88,15 @@ def format_alfred_output(bookmark):
         items.append({
             "title": "📝: " + note if note else "📝: No Note",
             "subtitle": "🤖: " + summary if summary else "🤖: No Summary",
+            #"arg": bookmark.get("id", "") + "?note=" + note if note else bookmark.get("id", "") + "?summary=" + summary,
+            # Format arg as Markdown shown both note and summary if exists
+            ## SAME AS ABOVE
             "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            #"mods": {
+                #"cmd": {
+                    #"arg": summary if summary else note,
+                #}
+            #},
             "icon": {"path": "icons/ledger.png"}
         })
 
@@ -128,6 +136,12 @@ def format_alfred_output(bookmark):
         "subtitle": bookmark['content']['url'] if bookmark['content']['type'] == "link" else format_title_without_tags(bookmark),
         "arg": f"delete:{bookmark['id']}",
         "icon": {"path": "icons/wastebasket.png"}
+    })
+    # Go back
+    items.append({
+        "title": "Go Back",
+        "arg": ":action:back",
+        "icon": {"path": "icons/goback.png"}
     })
 
     return json.dumps({"items": items}, indent=2)
