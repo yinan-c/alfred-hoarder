@@ -78,7 +78,8 @@ def format_alfred_output(bookmark):
     items.append({
         "subtitle": content_description,
         "title": tags if tags else "No Tags",
-        "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+        #"arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+        "arg": f"tags:{bookmark['id']}", # For calling show_bookmark_tags
         "icon": {"path": "icons/label.png"}
     })
 
@@ -147,6 +148,31 @@ def format_alfred_output(bookmark):
 
     return json.dumps({"items": items}, indent=2)
 
+def show_bookmark_tags(bookmark):
+    """Format bookmark tags as Alfred Script Filter JSON output"""
+    items = []
+    
+    for tag in bookmark.get("tags", []):
+        # Add emoji indicator for tag source
+        source_indicator = "🤖" if tag.get("attachedBy") == "ai" else "👤"
+        
+        items.append({
+            "title": f"#{tag['name']}",
+            "subtitle": f"{source_indicator} ID: {tag['id']} • Added by: {tag['attachedBy']}",
+            "arg": f"{tag['id']}", # For future tag view
+            "icon": {"path": "icons/label.png"},
+        })
+    
+    if not items:
+        items.append({
+            "title": "No tags found",
+            "subtitle": "This bookmark has no tags",
+            "arg": "",
+            "icon": {"path": "icons/label.png"}
+        })
+    
+    return json.dumps({"items": items}, indent=2)
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(json.dumps({
@@ -162,5 +188,14 @@ if __name__ == "__main__":
 
     bookmark_id = sys.argv[1]
     bookmark = get_bookmark_details(bookmark_id)
-    alfred_output = format_alfred_output(bookmark)
-    print(alfred_output)
+    
+    # Check if --tags option is provided
+    # Check if bookmark is empty
+    if bookmark_id == "":
+        output = json.dumps({"items": [{"title": "Go Back to Search Bookmarks", "icon": {"path": "icons/goback.png"}, "arg": ":action:back"}]})
+    elif len(sys.argv) > 2 and sys.argv[2] == "--tags":
+        output = show_bookmark_tags(bookmark)
+    else:
+        output = format_alfred_output(bookmark)
+    
+    print(output)
