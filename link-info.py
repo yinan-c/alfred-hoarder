@@ -2,7 +2,7 @@ import requests
 import json
 import sys
 import os
-from hoarder import get_arg_and_icon, format_title_with_tags
+from hoarder import get_arg_and_icon
 
 # Hoarder API configuration
 HOARDER_SERVER_ADDR = os.getenv("HOARDER_SERVER_ADDR")
@@ -11,6 +11,20 @@ HEADERS = {
     "Accept": "application/json",
     "Authorization": f"Bearer {HOARDER_API_KEY}"
 }
+
+def format_title_without_tags(bookmark):
+    content = bookmark.get("content", {})
+    content_type = content.get("type")
+    
+    if content_type == "text":
+        title = content.get("text", "Untitled Text")
+    elif content_type == "asset" and content.get("assetType") == "image":
+        title = content.get("fileName", "Untitled Image")
+    else:
+        title = (bookmark.get("content", {}).get("title") or 
+                bookmark.get("title") or 
+                "Untitled")    
+    return title
 
 def get_bookmark_details(bookmark_id):
     """Fetch bookmark details from the Hoarder API"""
@@ -37,7 +51,7 @@ def format_alfred_output(bookmark):
 
     # Content title and URL (title and subtitle)
     items.append({
-        "title": format_title_with_tags(bookmark),
+        "title": format_title_without_tags(bookmark),
         "subtitle": (bookmark.get("content", {}).get("url", "") or 
                     bookmark.get("content", {}).get("text", "") or 
                     bookmark.get("content", {}).get("fileName", "")),
@@ -78,14 +92,14 @@ def format_alfred_output(bookmark):
     # Archived
     items.append({
         "title": "Archived" if bookmark.get("archived", False) else "Not Archived",
-        "arg": bookmark.get("archived", False),
+        "arg": f"archive:{bookmark['id']}",
         "icon": {"path": "icons/white_check_mark.png"} if bookmark.get("archived", False) else {"path": "icons/radio_button.png"}
     })
 
     # Favorited
     items.append({
         "title": "Favorited" if bookmark.get("favourited", False) else "Not Favorited",
-        "arg": bookmark.get("favourited", False),
+        "arg": f"favorite:{bookmark['id']}",
         "icon": {"path": "icons/star.png"} if bookmark.get("favourited", False) else {"path": "icons/radio_button.png"}
     })
 
@@ -107,8 +121,8 @@ def format_alfred_output(bookmark):
 
     # Delete action
     items.append({
-        "title": "Delete Bookmark",
-        "subtitle": f"Bookmark ID: {bookmark['id']}",
+        "title": "Delete " + bookmark['content']['type'] + ": " + format_title_without_tags(bookmark),
+        "subtitle": bookmark['content']['url'] if bookmark['content']['type'] == "link" else format_title_without_tags(bookmark),
         "arg": f"delete:{bookmark['id']}",
         "icon": {"path": "icons/wastebasket.png"}
     })

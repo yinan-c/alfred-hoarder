@@ -19,11 +19,70 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>17CB1E6B-9582-4A10-8B72-D92E87143017</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>1AFBA318-1D54-4312-94C6-0563C26A6027</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3E455EA1-E560-4B3C-8E3F-26D11149E70D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B81A6337-E9B2-4748-9447-D3AFA0F044AF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3E455EA1-E560-4B3C-8E3F-26D11149E70D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -50,11 +109,13 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string></string>
+				<string>View and Actions ...</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 		</array>
+		<key>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</key>
+		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>Yinan Chen</string>
@@ -66,6 +127,40 @@
 	<string>Hoarder</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>hoarder</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>B81A6337-E9B2-4748-9447-D3AFA0F044AF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>hoarder</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -192,6 +287,94 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Extract action and ID from the argument
+action=$(echo "$1" | cut -d':' -f1)
+id=$(echo "$1" | cut -d':' -f2)
+
+# Define headers
+AUTH_HEADER="Authorization: Bearer ${HOARDER_API_KEY}"
+CONTENT_HEADER="Content-Type: application/json"
+ACCEPT_HEADER="Accept: application/json"
+
+# Initialize response variables
+http_status=""
+response_body=""
+
+# Perform actions based on the extracted action
+case "$action" in
+  archive)
+    # Archive the bookmark
+    response=$(curl -w "%{http_code}" -s -o response_body.tmp -L -X PATCH "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
+         -H "$AUTH_HEADER" \
+         -H "$CONTENT_HEADER" \
+         -H "$ACCEPT_HEADER" \
+         -d '{"archived": true}')
+    http_status=$response
+    response_body=$(cat response_body.tmp)
+    if [ "$http_status" -eq 200 ]; then
+      echo "Bookmark ${id} archived successfully."
+    else
+      echo "Failed to archive bookmark ${id}. HTTP Status: $http_status"
+      echo "Response: $response_body"
+    fi
+    ;;
+  favorite)
+    # Mark as favorite
+    response=$(curl -w "%{http_code}" -s -o response_body.tmp -L -X PATCH "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
+         -H "$AUTH_HEADER" \
+         -H "$CONTENT_HEADER" \
+         -H "$ACCEPT_HEADER" \
+         -d '{"favourited": true}')
+    http_status=$response
+    response_body=$(cat response_body.tmp)
+    if [ "$http_status" -eq 200 ]; then
+      echo "Bookmark ${id} favorited successfully."
+    else
+      echo "Failed to favorite bookmark ${id}. HTTP Status: $http_status"
+      echo "Response: $response_body"
+    fi
+    ;;
+  delete)
+    # Delete the bookmark
+    response=$(curl -w "%{http_code}" -s -o /dev/null -L -X DELETE "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
+         -H "$AUTH_HEADER")
+    http_status=$response
+    if [ "$http_status" -eq 204 ]; then
+      echo "Bookmark ${id} deleted successfully."
+    else
+      echo "Failed to delete bookmark ${id}. HTTP Status: $http_status"
+    fi
+    ;;
+  *)
+    # Default case if action is not recognized
+    echo "Unknown action: $action"
+    ;;
+esac
+
+# Clean up temporary response files
+rm -f response_body.tmp</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3E455EA1-E560-4B3C-8E3F-26D11149E70D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -217,9 +400,9 @@
 				<key>script</key>
 				<string>export PYTHONPATH='./libs/'
 
-/usr/bin/python3 link-info.py {query}</string>
+/usr/bin/python3 link-info.py "$1"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -237,6 +420,27 @@
 			<string>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -321,51 +525,79 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 		<key>17CB1E6B-9582-4A10-8B72-D92E87143017</key>
 		<dict>
 			<key>xpos</key>
-			<real>140</real>
+			<real>320</real>
 			<key>ypos</key>
-			<real>215</real>
+			<real>265</real>
 		</dict>
 		<key>1AFBA318-1D54-4312-94C6-0563C26A6027</key>
 		<dict>
 			<key>xpos</key>
-			<real>430</real>
+			<real>610</real>
 			<key>ypos</key>
-			<real>370</real>
+			<real>420</real>
+		</dict>
+		<key>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</key>
+		<dict>
+			<key>xpos</key>
+			<real>95</real>
+			<key>ypos</key>
+			<real>125</real>
 		</dict>
 		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
 		<dict>
 			<key>xpos</key>
-			<real>140</real>
+			<real>320</real>
 			<key>ypos</key>
-			<real>370</real>
+			<real>420</real>
+		</dict>
+		<key>3E455EA1-E560-4B3C-8E3F-26D11149E70D</key>
+		<dict>
+			<key>xpos</key>
+			<real>860</real>
+			<key>ypos</key>
+			<real>270</real>
 		</dict>
 		<key>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</key>
 		<dict>
 			<key>xpos</key>
-			<real>680</real>
+			<real>860</real>
 			<key>ypos</key>
-			<real>370</real>
+			<real>420</real>
 		</dict>
 		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
 		<dict>
 			<key>xpos</key>
-			<real>425</real>
+			<real>605</real>
 			<key>ypos</key>
-			<real>220</real>
+			<real>270</real>
+		</dict>
+		<key>B81A6337-E9B2-4748-9447-D3AFA0F044AF</key>
+		<dict>
+			<key>xpos</key>
+			<real>1045</real>
+			<key>ypos</key>
+			<real>110</real>
 		</dict>
 		<key>D9031B8B-4F98-42C5-8756-F39444B1DD7F</key>
 		<dict>
 			<key>xpos</key>
-			<real>425</real>
+			<real>605</real>
 			<key>ypos</key>
-			<real>75</real>
+			<real>125</real>
 		</dict>
 		<key>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</key>
 		<dict>
 			<key>xpos</key>
-			<real>140</real>
+			<real>320</real>
 			<key>ypos</key>
-			<real>75</real>
+			<real>125</real>
+		</dict>
+		<key>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</key>
+		<dict>
+			<key>xpos</key>
+			<real>1045</real>
+			<key>ypos</key>
+			<real>270</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
