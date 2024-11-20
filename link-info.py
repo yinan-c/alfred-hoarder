@@ -35,9 +35,10 @@ def get_bookmark_details(bookmark_id):
         print(json.dumps({
             "items": [
                 {
-                    "title": "Error fetching bookmark details",
+                    "title": "Error fetching bookmark details - Go Back",
                     "subtitle": str(e),
-                    "icon": {"path": "icon.png"}
+                    "icon": {"path": "icons/goback.png"},
+                    "arg": ":action:back"
                 }
             ]
         }))
