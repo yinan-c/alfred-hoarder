@@ -31,16 +31,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>17CB1E6B-9582-4A10-8B72-D92E87143017</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
 		<array>
@@ -82,7 +72,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3E455EA1-E560-4B3C-8E3F-26D11149E70D</string>
+				<string>F5C818DB-045F-4C7B-9F22-3A1CD996ED49</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -113,9 +103,44 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>EF3D6F1E-02D6-4871-9734-6D864BB0DEF2</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Open in Hoarder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</key>
 		<array/>
+		<key>F5C818DB-045F-4C7B-9F22-3A1CD996ED49</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>66687379-E345-44A1-BA93-0B3758D1862F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>261C6176-221E-44AC-AFF1-0BDED62833DC</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>3E455EA1-E560-4B3C-8E3F-26D11149E70D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Yinan Chen</string>
@@ -127,6 +152,48 @@
 	<string>Hoarder</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>D9031B8B-4F98-42C5-8756-F39444B1DD7F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>66687379-E345-44A1-BA93-0B3758D1862F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -149,6 +216,55 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
+
+/usr/bin/python3 link-info.py "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>availableviaurlhandler</key>
 				<false/>
 				<key>triggerid</key>
@@ -158,27 +274,6 @@
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
 			<string>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>skipqueryencode</key>
-				<false/>
-				<key>skipvarencode</key>
-				<false/>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>D9031B8B-4F98-42C5-8756-F39444B1DD7F</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -236,6 +331,235 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>http*</string>
+						<key>outputlabel</key>
+						<string>open url</string>
+						<key>uid</key>
+						<string>261C6176-221E-44AC-AFF1-0BDED62833DC</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>F5C818DB-045F-4C7B-9F22-3A1CD996ED49</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Extract action and ID from the argument
+action=$(echo "$1" | cut -d':' -f1)
+id=$(echo "$1" | cut -d':' -f2)
+
+# Define headers
+AUTH_HEADER="Authorization: Bearer ${HOARDER_API_KEY}"
+CONTENT_HEADER="Content-Type: application/json"
+ACCEPT_HEADER="Accept: application/json"
+
+# Function to get the current bookmark state
+get_bookmark_state() {
+  curl -s -L -X GET "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
+       -H "$AUTH_HEADER" \
+       -H "$ACCEPT_HEADER"
+}
+
+# Initialize response variables
+http_status=""
+response_body=""
+
+# Perform actions based on the extracted action
+case "$action" in
+  archive)
+    # Get the current archived state
+    current_state=$(get_bookmark_state | jq -r '.archived')
+    if [ "$current_state" = "true" ]; then
+      new_state="false"
+    else
+      new_state="true"
+    fi
+    # Toggle archived state
+    response=$(curl -w "%{http_code}" -s -o response_body.tmp -L -X PATCH "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
+         -H "$AUTH_HEADER" \
+         -H "$CONTENT_HEADER" \
+         -H "$ACCEPT_HEADER" \
+         -d "{\"archived\": $new_state}")
+    http_status=$response
+    response_body=$(cat response_body.tmp)
+    if [ "$http_status" -eq 200 ]; then
+      echo "Bookmark ${id} archived state toggled to ${new_state}."
+    else
+      echo "Failed to toggle archive state for bookmark ${id}. HTTP Status: $http_status"
+      echo "Response: $response_body"
+    fi
+    ;;
+  favorite)
+    # Get the current favourited state
+    current_state=$(get_bookmark_state | jq -r '.favourited')
+    if [ "$current_state" = "true" ]; then
+      new_state="false"
+    else
+      new_state="true"
+    fi
+    # Toggle favourited state
+    response=$(curl -w "%{http_code}" -s -o response_body.tmp -L -X PATCH "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
+         -H "$AUTH_HEADER" \
+         -H "$CONTENT_HEADER" \
+         -H "$ACCEPT_HEADER" \
+         -d "{\"favourited\": $new_state}")
+    http_status=$response
+    response_body=$(cat response_body.tmp)
+    if [ "$http_status" -eq 200 ]; then
+      echo "Bookmark ${id} favourite state toggled to ${new_state}."
+    else
+      echo "Failed to toggle favourite state for bookmark ${id}. HTTP Status: $http_status"
+      echo "Response: $response_body"
+    fi
+    ;;
+  delete)
+    # Delete the bookmark
+    response=$(curl -w "%{http_code}" -s -o /dev/null -L -X DELETE "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
+         -H "$AUTH_HEADER")
+    http_status=$response
+    if [ "$http_status" -eq 204 ]; then
+      echo "Bookmark ${id} deleted successfully."
+    else
+      echo "Failed to delete bookmark ${id}. HTTP Status: $http_status"
+    fi
+    ;;
+  *)
+    # Default case if action is not recognized
+    echo "Unknown action: $action"
+    ;;
+esac
+
+# Clean up temporary response files
+rm -f response_body.tmp</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3E455EA1-E560-4B3C-8E3F-26D11149E70D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>EF3D6F1E-02D6-4871-9734-6D864BB0DEF2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
+
+/usr/bin/python3 hoard.py "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1AFBA318-1D54-4312-94C6-0563C26A6027</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -287,185 +611,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string># Extract action and ID from the argument
-action=$(echo "$1" | cut -d':' -f1)
-id=$(echo "$1" | cut -d':' -f2)
-
-# Define headers
-AUTH_HEADER="Authorization: Bearer ${HOARDER_API_KEY}"
-CONTENT_HEADER="Content-Type: application/json"
-ACCEPT_HEADER="Accept: application/json"
-
-# Initialize response variables
-http_status=""
-response_body=""
-
-# Perform actions based on the extracted action
-case "$action" in
-  archive)
-    # Archive the bookmark
-    response=$(curl -w "%{http_code}" -s -o response_body.tmp -L -X PATCH "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
-         -H "$AUTH_HEADER" \
-         -H "$CONTENT_HEADER" \
-         -H "$ACCEPT_HEADER" \
-         -d '{"archived": true}')
-    http_status=$response
-    response_body=$(cat response_body.tmp)
-    if [ "$http_status" -eq 200 ]; then
-      echo "Bookmark ${id} archived successfully."
-    else
-      echo "Failed to archive bookmark ${id}. HTTP Status: $http_status"
-      echo "Response: $response_body"
-    fi
-    ;;
-  favorite)
-    # Mark as favorite
-    response=$(curl -w "%{http_code}" -s -o response_body.tmp -L -X PATCH "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
-         -H "$AUTH_HEADER" \
-         -H "$CONTENT_HEADER" \
-         -H "$ACCEPT_HEADER" \
-         -d '{"favourited": true}')
-    http_status=$response
-    response_body=$(cat response_body.tmp)
-    if [ "$http_status" -eq 200 ]; then
-      echo "Bookmark ${id} favorited successfully."
-    else
-      echo "Failed to favorite bookmark ${id}. HTTP Status: $http_status"
-      echo "Response: $response_body"
-    fi
-    ;;
-  delete)
-    # Delete the bookmark
-    response=$(curl -w "%{http_code}" -s -o /dev/null -L -X DELETE "${HOARDER_SERVER_ADDR}/api/v1/bookmarks/${id}" \
-         -H "$AUTH_HEADER")
-    http_status=$response
-    if [ "$http_status" -eq 204 ]; then
-      echo "Bookmark ${id} deleted successfully."
-    else
-      echo "Failed to delete bookmark ${id}. HTTP Status: $http_status"
-    fi
-    ;;
-  *)
-    # Default case if action is not recognized
-    echo "Unknown action: $action"
-    ;;
-esac
-
-# Clean up temporary response files
-rm -f response_body.tmp</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3E455EA1-E560-4B3C-8E3F-26D11149E70D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>export PYTHONPATH='./libs/'
-
-/usr/bin/python3 link-info.py "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string></string>
-				<key>title</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string></string>
-				<key>title</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -484,31 +629,6 @@ rm -f response_body.tmp</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>export PYTHONPATH='./libs/'
-
-/usr/bin/python3 hoard.py "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>1AFBA318-1D54-4312-94C6-0563C26A6027</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string># Hoarder Workflow
@@ -525,63 +645,70 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 		<key>17CB1E6B-9582-4A10-8B72-D92E87143017</key>
 		<dict>
 			<key>xpos</key>
-			<real>320</real>
+			<real>1050</real>
 			<key>ypos</key>
-			<real>265</real>
+			<real>550</real>
 		</dict>
 		<key>1AFBA318-1D54-4312-94C6-0563C26A6027</key>
 		<dict>
 			<key>xpos</key>
-			<real>610</real>
+			<real>615</real>
 			<key>ypos</key>
-			<real>420</real>
+			<real>550</real>
 		</dict>
 		<key>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</key>
 		<dict>
 			<key>xpos</key>
-			<real>95</real>
+			<real>90</real>
 			<key>ypos</key>
-			<real>125</real>
+			<real>270</real>
 		</dict>
 		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
 		<dict>
 			<key>xpos</key>
-			<real>320</real>
+			<real>325</real>
 			<key>ypos</key>
-			<real>420</real>
+			<real>550</real>
 		</dict>
 		<key>3E455EA1-E560-4B3C-8E3F-26D11149E70D</key>
 		<dict>
 			<key>xpos</key>
-			<real>860</real>
+			<real>1000</real>
 			<key>ypos</key>
-			<real>270</real>
+			<real>350</real>
 		</dict>
 		<key>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</key>
 		<dict>
 			<key>xpos</key>
-			<real>860</real>
+			<real>865</real>
 			<key>ypos</key>
-			<real>420</real>
+			<real>550</real>
+		</dict>
+		<key>66687379-E345-44A1-BA93-0B3758D1862F</key>
+		<dict>
+			<key>xpos</key>
+			<real>1000</real>
+			<key>ypos</key>
+			<real>180</real>
 		</dict>
 		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
 		<dict>
 			<key>xpos</key>
-			<real>605</real>
+			<real>610</real>
 			<key>ypos</key>
 			<real>270</real>
 		</dict>
 		<key>B81A6337-E9B2-4748-9447-D3AFA0F044AF</key>
 		<dict>
 			<key>xpos</key>
-			<real>1045</real>
+			<real>1195</real>
 			<key>ypos</key>
-			<real>110</real>
+			<real>185</real>
 		</dict>
 		<key>D9031B8B-4F98-42C5-8756-F39444B1DD7F</key>
 		<dict>
 			<key>xpos</key>
-			<real>605</real>
+			<real>615</real>
 			<key>ypos</key>
 			<real>125</real>
 		</dict>
@@ -590,14 +717,28 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>xpos</key>
 			<real>320</real>
 			<key>ypos</key>
-			<real>125</real>
+			<real>270</real>
+		</dict>
+		<key>EF3D6F1E-02D6-4871-9734-6D864BB0DEF2</key>
+		<dict>
+			<key>xpos</key>
+			<real>615</real>
+			<key>ypos</key>
+			<real>400</real>
 		</dict>
 		<key>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</key>
 		<dict>
 			<key>xpos</key>
-			<real>1045</real>
+			<real>1185</real>
 			<key>ypos</key>
-			<real>270</real>
+			<real>350</real>
+		</dict>
+		<key>F5C818DB-045F-4C7B-9F22-3A1CD996ED49</key>
+		<dict>
+			<key>xpos</key>
+			<real>805</real>
+			<key>ypos</key>
+			<real>290</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>

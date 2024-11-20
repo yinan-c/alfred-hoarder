@@ -142,7 +142,10 @@ def fetch_bookmarks():
                     "arg": get_arg_and_icon(bookmark)[0],
                     "mods": {
                         "cmd": {
-                            "arg": HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
+                            "arg": bookmark.get("id", "")
+                        },
+                        "option": {
+                            "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
                         }
                     },
                     "icon": {
@@ -214,8 +217,11 @@ def search_bookmarks(query=""):
                     "arg": get_arg_and_icon(bookmark)[0],
                     "mods": {
                         "cmd": {
-                            "arg": HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
-                        }
+                            "arg": bookmark.get("id", "")
+                        },
+                        "option": {
+                            "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
+                        },
                     },
                     "icon": {
                         "path": get_arg_and_icon(bookmark)[1]

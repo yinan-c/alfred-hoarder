@@ -55,11 +55,14 @@ def format_alfred_output(bookmark):
         "subtitle": (bookmark.get("content", {}).get("url", "") or 
                     bookmark.get("content", {}).get("text", "") or 
                     bookmark.get("content", {}).get("fileName", "")),
-        "arg": get_arg_and_icon(bookmark)[0],
+        "arg": bookmark.get("content", {}).get("url", "") or f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}",
         "mods": {
             "cmd": {
                 "arg": HOARDER_SERVER_ADDR + "/dashboard/preview/" + bookmark.get("id", "")
-            }
+            },
+            "option": {
+                "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
+            },
         },
         "icon": {
             "path": get_arg_and_icon(bookmark)[1]
@@ -74,7 +77,7 @@ def format_alfred_output(bookmark):
     items.append({
         "subtitle": content_description,
         "title": tags if tags else "No Tags",
-        "arg": content_description,
+        "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
         "icon": {"path": "icons/label.png"}
     })
 
@@ -85,7 +88,7 @@ def format_alfred_output(bookmark):
         items.append({
             "title": "📝: " + note if note else "📝: No Note",
             "subtitle": "🤖: " + summary if summary else "🤖: No Summary",
-            "arg": note or summary,
+            "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
             "icon": {"path": "icons/ledger.png"}
         })
 
@@ -115,7 +118,7 @@ def format_alfred_output(bookmark):
 
     items.append({
         "title": "Screenshots: " + get_emoji_for_boolean(screenshots) + " Full Page Archive: " + get_emoji_for_boolean(full_page_archive),
-        "arg": get_emoji_for_boolean(screenshots) + " " + get_emoji_for_boolean(full_page_archive),
+        "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
         "icon": {"path": "icons/package.png"}
     })
 
