@@ -308,6 +308,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>D9533060-64B1-4552-B792-EA2D78E9580E</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>browser</key>
 				<string></string>
 				<key>skipqueryencode</key>
@@ -325,25 +344,6 @@
 			<string>66687379-E345-44A1-BA93-0B3758D1862F</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>D9533060-64B1-4552-B792-EA2D78E9580E</string>
-			<key>version</key>
-			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1087,7 +1087,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 			<key>xpos</key>
 			<real>1010</real>
 			<key>ypos</key>
-			<real>555</real>
+			<real>535</real>
 		</dict>
 		<key>1AFBA318-1D54-4312-94C6-0563C26A6027</key>
 		<dict>
@@ -1148,7 +1148,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 		<key>7E864B38-25A5-4BDC-981D-5C0CF9685A1A</key>
 		<dict>
 			<key>xpos</key>
-			<real>805</real>
+			<real>815</real>
 			<key>ypos</key>
 			<real>860</real>
 		</dict>
@@ -1157,7 +1157,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 			<key>xpos</key>
 			<real>810</real>
 			<key>ypos</key>
-			<real>440</real>
+			<real>530</real>
 		</dict>
 		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
 		<dict>
@@ -1192,7 +1192,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 			<key>xpos</key>
 			<real>805</real>
 			<key>ypos</key>
-			<real>55</real>
+			<real>20</real>
 		</dict>
 		<key>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</key>
 		<dict>
