@@ -85,6 +85,26 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>D9533060-64B1-4552-B792-EA2D78E9580E</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy to clipboard</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>66687379-E345-44A1-BA93-0B3758D1862F</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Open in Hoarder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>F5C818DB-045F-4C7B-9F22-3A1CD996ED49</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -96,6 +116,16 @@
 		</array>
 		<key>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</key>
 		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>250A2BFA-E8E5-42FD-8EE0-E89B85F5D69F</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy link to clipboard</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>D9031B8B-4F98-42C5-8756-F39444B1DD7F</string>
@@ -110,7 +140,7 @@
 				<key>destinationuid</key>
 				<string>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>View and Actions ...</string>
 				<key>vitoclose</key>
@@ -204,6 +234,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>250A2BFA-E8E5-42FD-8EE0-E89B85F5D69F</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>browser</key>
 				<string></string>
 				<key>skipqueryencode</key>
@@ -225,23 +274,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>skipqueryencode</key>
+				<key>autopaste</key>
 				<false/>
-				<key>skipvarencode</key>
-				<false/>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
+				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>D9031B8B-4F98-42C5-8756-F39444B1DD7F</string>
+			<string>D9533060-64B1-4552-B792-EA2D78E9580E</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -261,6 +308,27 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>D9031B8B-4F98-42C5-8756-F39444B1DD7F</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -444,6 +512,80 @@ rm -f response_body.tmp</string>
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>F5C818DB-045F-4C7B-9F22-3A1CD996ED49</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>http*</string>
+						<key>outputlabel</key>
+						<string>open url</string>
+						<key>uid</key>
+						<string>261C6176-221E-44AC-AFF1-0BDED62833DC</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>^(archive|favorite|delete):[a-zA-Z0-9]+$</string>
+						<key>outputlabel</key>
+						<string>action</string>
+						<key>uid</key>
+						<string>822834C9-FB5B-4D0E-BB6B-D800EB375266</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>tags:[a-zA-Z0-9]+$</string>
+						<key>outputlabel</key>
+						<string>show all tags</string>
+						<key>uid</key>
+						<string>A5730066-CA9D-4997-94D2-EEB989AA3CD7</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>:action:back</string>
+						<key>outputlabel</key>
+						<string>go back</string>
+						<key>uid</key>
+						<string>96FA58A0-FD25-42EB-AE1D-3A8DBCF0AE48</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>CEB88532-41DA-4FEE-827D-29AA1F78530C</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -705,25 +847,6 @@ id=$(echo "$1" | cut -d':' -f2)
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>hoarder</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<false/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>B81A6337-E9B2-4748-9447-D3AFA0F044AF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -772,17 +895,39 @@ id=$(echo "$1" | cut -d':' -f2)
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>hoarder</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>B81A6337-E9B2-4748-9447-D3AFA0F044AF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Hoarder Workflow
 
 Hoarder is a self-hosted bookmark app with Al automatic tagging and full text search.
 
-This workflow requires Hoarder API to work. It can list and full text search your bookmarks based on title, tags, description, htmlContent and note!
+This workflow requires Hoarder API to work. It can list and full text search your bookmarks based on title, tags, description, cached content and note!
 
-`Hoarder` to search, `Hoard` to hoard.
+`Hoarder` + keyword to full text search, `Hoard` to hoard (Add links and notes)
 
-Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
+ - ⏎ : Open link directly
+ - ⌘+⏎: Copy link to clipboard
+ - ⌥+⏎: Open in your Hoarder server
+ - ⌃+⏎: View and control (Favorite/Archive/Delete)</string>
 	<key>uidata</key>
 	<dict>
 		<key>17CB1E6B-9582-4A10-8B72-D92E87143017</key>
@@ -806,6 +951,13 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>ypos</key>
 			<real>270</real>
 		</dict>
+		<key>250A2BFA-E8E5-42FD-8EE0-E89B85F5D69F</key>
+		<dict>
+			<key>xpos</key>
+			<real>615</real>
+			<key>ypos</key>
+			<real>15</real>
+		</dict>
 		<key>2D1103F3-E2F6-4AF1-971C-F68B287327B6</key>
 		<dict>
 			<key>xpos</key>
@@ -816,9 +968,9 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 		<key>3E455EA1-E560-4B3C-8E3F-26D11149E70D</key>
 		<dict>
 			<key>xpos</key>
-			<real>1005</real>
+			<real>1000</real>
 			<key>ypos</key>
-			<real>255</real>
+			<real>240</real>
 		</dict>
 		<key>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</key>
 		<dict>
@@ -832,14 +984,14 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 			<key>xpos</key>
 			<real>1240</real>
 			<key>ypos</key>
-			<real>295</real>
+			<real>275</real>
 		</dict>
 		<key>66687379-E345-44A1-BA93-0B3758D1862F</key>
 		<dict>
 			<key>xpos</key>
 			<real>1000</real>
 			<key>ypos</key>
-			<real>115</real>
+			<real>55</real>
 		</dict>
 		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
 		<dict>
@@ -851,16 +1003,30 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 		<key>B81A6337-E9B2-4748-9447-D3AFA0F044AF</key>
 		<dict>
 			<key>xpos</key>
-			<real>1515</real>
+			<real>1495</real>
 			<key>ypos</key>
-			<real>555</real>
+			<real>570</real>
+		</dict>
+		<key>CEB88532-41DA-4FEE-827D-29AA1F78530C</key>
+		<dict>
+			<key>xpos</key>
+			<real>805</real>
+			<key>ypos</key>
+			<real>245</real>
 		</dict>
 		<key>D9031B8B-4F98-42C5-8756-F39444B1DD7F</key>
 		<dict>
 			<key>xpos</key>
 			<real>615</real>
 			<key>ypos</key>
-			<real>125</real>
+			<real>140</real>
+		</dict>
+		<key>D9533060-64B1-4552-B792-EA2D78E9580E</key>
+		<dict>
+			<key>xpos</key>
+			<real>805</real>
+			<key>ypos</key>
+			<real>55</real>
 		</dict>
 		<key>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</key>
 		<dict>
@@ -879,16 +1045,16 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 		<key>F1ABC3E1-E8A5-4BC9-A381-027A12C03D0E</key>
 		<dict>
 			<key>xpos</key>
-			<real>1250</real>
+			<real>1245</real>
 			<key>ypos</key>
-			<real>155</real>
+			<real>120</real>
 		</dict>
 		<key>F5C818DB-045F-4C7B-9F22-3A1CD996ED49</key>
 		<dict>
 			<key>xpos</key>
 			<real>805</real>
 			<key>ypos</key>
-			<real>260</real>
+			<real>245</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -1000,7 +1166,7 @@ Open link directly by ⏎ and Open in hoarder by ⌘+⏎.</string>
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.2</string>
+	<string>1.2.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/yinan-c/alfred-hoarder</string>
 </dict>

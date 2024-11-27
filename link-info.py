@@ -56,7 +56,7 @@ def format_alfred_output(bookmark):
                     bookmark.get("content", {}).get("fileName", "")),
         "arg": bookmark.get("content", {}).get("url", "") or f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}",
         "mods": {
-            "cmd": {
+            "ctrl": {
                 "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}",
                 ## THOUGHTS: I was thinking alfred textview to edit the title/text/note/summary, sticking with url for now
                 #"arg": bookmark.get("content", {}).get("text", "") if bookmark.get("content", {}).get("type") == "text" else f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
@@ -64,6 +64,9 @@ def format_alfred_output(bookmark):
             "option": {
                 "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
             },
+            "cmd": {
+                "arg": bookmark.get("content", {}).get("url", "") or f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}",
+            }
         },
         "icon": {
             "path": get_arg_and_icon(bookmark)[1]
@@ -80,6 +83,15 @@ def format_alfred_output(bookmark):
         "title": tags if tags else "No Tags",
         #"arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
         "arg": f"tags:{bookmark['id']}", # For calling show_bookmark_tags
+        "mods": {
+            "cmd": {
+                # list all tags
+                "arg": tags if tags else "No Tags",
+            }, 
+            "option": {
+                "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+        },
         "icon": {"path": "icons/label.png"}
     })
 
@@ -94,11 +106,14 @@ def format_alfred_output(bookmark):
             # Format arg as Markdown shown both note and summary if exists
             ## SAME AS ABOVE
             "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
-            #"mods": {
-                #"cmd": {
-                    #"arg": summary if summary else note,
-                #}
-            #},
+            "mods": {
+                "cmd": {
+                    "arg": f"Note: {note}" if note else "Summary: {summary}" if summary else ""
+                },
+                "option": {
+                    "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+                },
+            },
             "icon": {"path": "icons/ledger.png"}
         })
 
@@ -106,6 +121,14 @@ def format_alfred_output(bookmark):
     items.append({
         "title": "Archived" if bookmark.get("archived", False) else "Not Archived",
         "arg": f"archive:{bookmark['id']}",
+        "mods": {
+            "cmd": {
+                "arg": bookmark['content']['url'] if bookmark['content']['type'] == "link" else f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+            "option": {
+                "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+        },
         "icon": {"path": "icons/white_check_mark.png"} if bookmark.get("archived", False) else {"path": "icons/radio_button.png"}
     })
 
@@ -113,6 +136,14 @@ def format_alfred_output(bookmark):
     items.append({
         "title": "Favorited" if bookmark.get("favourited", False) else "Not Favorited",
         "arg": f"favorite:{bookmark['id']}",
+        "mods": {
+            "cmd": {
+                "arg": bookmark['content']['url'] if bookmark['content']['type'] == "link" else f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+            "option": {
+                "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+        },
         "icon": {"path": "icons/star.png"} if bookmark.get("favourited", False) else {"path": "icons/radio_button.png"}
     })
 
@@ -129,6 +160,14 @@ def format_alfred_output(bookmark):
     items.append({
         "title": "Screenshots: " + get_emoji_for_boolean(screenshots) + " Full Page Archive: " + get_emoji_for_boolean(full_page_archive),
         "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+        "mods": {
+            "cmd": {
+                "arg": bookmark['content']['url'] if bookmark['content']['type'] == "link" else f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+            "option": {
+                "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+        },
         "icon": {"path": "icons/package.png"}
     })
 
@@ -137,12 +176,28 @@ def format_alfred_output(bookmark):
         "title": "Delete " + bookmark['content']['type'] + ": " + format_title_without_tags(bookmark),
         "subtitle": bookmark['content']['url'] if bookmark['content']['type'] == "link" else format_title_without_tags(bookmark),
         "arg": f"delete:{bookmark['id']}",
+        "mods": {
+            "cmd": {
+                "arg": bookmark['content']['url'] if bookmark['content']['type'] == "link" else f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+            "option": {
+                "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark['id']}",
+            },
+        },
         "icon": {"path": "icons/wastebasket.png"}
     })
     # Go back
     items.append({
         "title": "Go Back",
         "arg": ":action:back",
+        "mods": {
+            "cmd": {
+                "arg": ":action:back",
+            },
+            "option": {
+                "arg": ":action:back",
+            },
+        },
         "icon": {"path": "icons/goback.png"}
     })
 
