@@ -18,6 +18,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>7E864B38-25A5-4BDC-981D-5C0CF9685A1A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</key>
 		<array>
@@ -81,6 +91,31 @@
 				<false/>
 			</dict>
 		</array>
+		<key>7E864B38-25A5-4BDC-981D-5C0CF9685A1A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>261C6176-221E-44AC-AFF1-0BDED62833DC</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>0D931E97-CE7D-486A-883A-3EA7B2C3AFDD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
 		<array>
 			<dict>
@@ -89,7 +124,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Copy to clipboard</string>
+				<string>Copy link to clipboard</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -110,6 +145,16 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>8E5C7F25-D6EE-4A37-B7C0-E3FB41C85F9C</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string>Copy Markdown link</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -153,6 +198,16 @@
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Open in Hoarder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>ECE20F5B-1DF1-443E-ABCB-F38B05CB6A3A</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string>Copy Markdown link</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -641,21 +696,6 @@ rm -f response_body.tmp</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>hoarder</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -703,6 +743,21 @@ rm -f response_body.tmp</string>
 			<string>E9008DE8-F9ED-4BC7-8325-F1972ED3C70D</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>hoarder</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -780,69 +835,40 @@ id=$(echo "$1" | cut -d':' -f2)
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>autopaste</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>export PYTHONPATH='./libs/'
-
-/usr/bin/python3 hoard.py "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>1AFBA318-1D54-4312-94C6-0563C26A6027</string>
+			<string>8E5C7F25-D6EE-4A37-B7C0-E3FB41C85F9C</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
+				<key>autopaste</key>
 				<false/>
-				<key>onlyshowifquerypopulated</key>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
 				<false/>
-				<key>removeextension</key>
+				<key>transient</key>
 				<false/>
-				<key>text</key>
-				<string></string>
-				<key>title</key>
-				<string></string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</string>
+			<string>ECE20F5B-1DF1-443E-ABCB-F38B05CB6A3A</string>
 			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>hoard</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>Add to Hoarder</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>2D1103F3-E2F6-4AF1-971C-F68B287327B6</string>
-			<key>version</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -914,6 +940,124 @@ id=$(echo "$1" | cut -d':' -f2)
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
+
+/usr/bin/python3 hoard.py "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1AFBA318-1D54-4312-94C6-0563C26A6027</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>hoard</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Add to Hoarder</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2D1103F3-E2F6-4AF1-971C-F68B287327B6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<true/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>0D931E97-CE7D-486A-883A-3EA7B2C3AFDD</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>\b(Error|Unknown)\b</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>261C6176-221E-44AC-AFF1-0BDED62833DC</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>7E864B38-25A5-4BDC-981D-5C0CF9685A1A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Hoarder Workflow
@@ -927,9 +1071,17 @@ This workflow requires Hoarder API to work. It can list and full text search you
  - ⏎ : Open link directly
  - ⌘+⏎: Copy link to clipboard
  - ⌥+⏎: Open in your Hoarder server
- - ⌃+⏎: View and control (Favorite/Archive/Delete)</string>
+ - ⌃+⏎: View and control (Favorite/Archive/Delete)
+ - Shift+⏎: Copy markdown link</string>
 	<key>uidata</key>
 	<dict>
+		<key>0D931E97-CE7D-486A-883A-3EA7B2C3AFDD</key>
+		<dict>
+			<key>xpos</key>
+			<real>950</real>
+			<key>ypos</key>
+			<real>855</real>
+		</dict>
 		<key>17CB1E6B-9582-4A10-8B72-D92E87143017</key>
 		<dict>
 			<key>xpos</key>
@@ -942,7 +1094,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 			<key>xpos</key>
 			<real>615</real>
 			<key>ypos</key>
-			<real>550</real>
+			<real>695</real>
 		</dict>
 		<key>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</key>
 		<dict>
@@ -963,7 +1115,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 			<key>xpos</key>
 			<real>325</real>
 			<key>ypos</key>
-			<real>550</real>
+			<real>695</real>
 		</dict>
 		<key>3E455EA1-E560-4B3C-8E3F-26D11149E70D</key>
 		<dict>
@@ -975,9 +1127,9 @@ This workflow requires Hoarder API to work. It can list and full text search you
 		<key>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</key>
 		<dict>
 			<key>xpos</key>
-			<real>815</real>
+			<real>950</real>
 			<key>ypos</key>
-			<real>550</real>
+			<real>695</real>
 		</dict>
 		<key>629CBC40-4B4A-4B3A-AB9C-6F6195FC9DF4</key>
 		<dict>
@@ -992,6 +1144,20 @@ This workflow requires Hoarder API to work. It can list and full text search you
 			<real>1000</real>
 			<key>ypos</key>
 			<real>55</real>
+		</dict>
+		<key>7E864B38-25A5-4BDC-981D-5C0CF9685A1A</key>
+		<dict>
+			<key>xpos</key>
+			<real>805</real>
+			<key>ypos</key>
+			<real>860</real>
+		</dict>
+		<key>8E5C7F25-D6EE-4A37-B7C0-E3FB41C85F9C</key>
+		<dict>
+			<key>xpos</key>
+			<real>810</real>
+			<key>ypos</key>
+			<real>440</real>
 		</dict>
 		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
 		<dict>
@@ -1034,6 +1200,13 @@ This workflow requires Hoarder API to work. It can list and full text search you
 			<real>320</real>
 			<key>ypos</key>
 			<real>270</real>
+		</dict>
+		<key>ECE20F5B-1DF1-443E-ABCB-F38B05CB6A3A</key>
+		<dict>
+			<key>xpos</key>
+			<real>615</real>
+			<key>ypos</key>
+			<real>530</real>
 		</dict>
 		<key>EF3D6F1E-02D6-4871-9734-6D864BB0DEF2</key>
 		<dict>
@@ -1166,7 +1339,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.2.1</string>
+	<string>1.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/yinan-c/alfred-hoarder</string>
 </dict>

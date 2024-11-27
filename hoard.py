@@ -44,7 +44,7 @@ def add_bookmark(url):
         response.raise_for_status()
         data = response.json()
         bookmark_id = data.get("id", "Unknown ID")
-        return f"Hoarded bookmark with ID: {bookmark_id}"
+        return f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark_id}"
     except requests.exceptions.RequestException as e:
         error_detail = ""
         if hasattr(e.response, 'text'):
@@ -60,7 +60,7 @@ def add_bookmark(url):
                         response.raise_for_status()
                         data = response.json()
                         bookmark_id = data.get("id", "Unknown ID")
-                        return f"Hoarded as text with ID: {bookmark_id}"
+                        return f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark_id}"
                     except requests.exceptions.RequestException as text_e:
                         #print(f"Text error response: {text_e.response.text if hasattr(text_e.response, 'text') else text_e}")
                         return f"Error adding as text: {text_e}"

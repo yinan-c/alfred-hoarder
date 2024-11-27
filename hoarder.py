@@ -90,6 +90,18 @@ def format_title_with_tags(bookmark):
     
     return title
 
+def format_title_without_tags(bookmark):
+    content = bookmark.get("content", {})
+    content_type = content.get("type")
+    
+    if content_type == "asset" and content.get("assetType") == "image":
+        title = content.get("fileName", "Untitled Image")
+    else:
+        title = (bookmark.get("content", {}).get("title") or 
+                bookmark.get("title") or 
+                "Untitled")
+    return title
+
 def get_arg_and_icon(bookmark):
     """Get appropriate arg and icon path based on content type"""
     content = bookmark.get("content", {})
@@ -147,6 +159,9 @@ def fetch_bookmarks():
                         },
                         "option": {
                             "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
+                        },
+                        "shift": {
+                            "arg": f"[{format_title_without_tags(bookmark)}]({get_arg_and_icon(bookmark)[0]})"
                         }
                     },
                     "icon": {
@@ -226,6 +241,9 @@ def search_bookmarks(query=""):
                         "cmd": {
                             "arg": get_arg_and_icon(bookmark)[0],
                         },
+                        "shift": {
+                            "arg": f"[{format_title_without_tags(bookmark)}]({get_arg_and_icon(bookmark)[0]})"
+                        }
                     },
                     "icon": {
                         "path": get_arg_and_icon(bookmark)[1]
