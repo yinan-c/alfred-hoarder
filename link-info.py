@@ -77,7 +77,7 @@ def format_alfred_output(bookmark):
     tags = ", ".join(tag["name"] for tag in bookmark.get("tags", []))
 
     # Content description as title and tags as subtitle
-    content_description = bookmark["content"].get("description", "No Description")
+    content_description = bookmark["content"].get("description") or "No Description"
     items.append({
         "subtitle": content_description,
         "title": tags if tags else "No Tags",
