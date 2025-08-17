@@ -199,7 +199,7 @@ def show_bookmark_tags(bookmark):
         
         items.append({
             "title": f"#{tag['name']}",
-            "subtitle": f"{source_indicator} ID: {tag['id']} • Added by: {tag['attachedBy']}",
+            "subtitle": f"{source_indicator} • Added by: {tag['attachedBy']}",
             "arg": f"{tag['name']}", # For future tag view
             "icon": {"path": "icons/label.png"},
         })

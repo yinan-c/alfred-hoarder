@@ -98,16 +98,20 @@ def fetch_bookmarks_by_tag(tag_name):
                     "arg": get_arg_and_icon(bookmark)[0],
                     "mods": {
                         "ctrl": {
-                            "arg": bookmark.get("id", "")
+                            "arg": bookmark.get("id", ""),
+                            "subtitle": "View bookmark details"
                         },
                         "cmd": {
                             "arg": get_arg_and_icon(bookmark)[0],
+                            "subtitle": "Copy URL to clipboard"
                         },
                         "option": {
-                            "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}"
+                            "arg": f"{HOARDER_SERVER_ADDR}/dashboard/preview/{bookmark.get('id', '')}",
+                            "subtitle": "Open in Hoarder"
                         },
                         "shift": {
-                            "arg": f"[{format_title_without_tags(bookmark)}]({get_arg_and_icon(bookmark)[0]})"
+                            "arg": f"[{format_title_without_tags(bookmark)}]({get_arg_and_icon(bookmark)[0]})",
+                            "subtitle": "Copy as Markdown link"
                         }
                     },
                     "icon": {
