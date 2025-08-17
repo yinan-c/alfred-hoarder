@@ -1,16 +1,7 @@
 import requests
 import json
 import sys
-import os
-from hoarder import get_arg_and_icon, format_title_without_tags
-
-# Hoarder API configuration
-HOARDER_SERVER_ADDR = os.getenv("HOARDER_SERVER_ADDR")
-HOARDER_API_KEY = os.getenv("HOARDER_API_KEY")
-HEADERS = {
-    "Accept": "application/json",
-    "Authorization": f"Bearer {HOARDER_API_KEY}"
-}
+from hoarder import get_arg_and_icon, format_title_without_tags, HOARDER_SERVER_ADDR, HEADERS
 
 
 def generate_mods(bookmark):
@@ -209,7 +200,7 @@ def show_bookmark_tags(bookmark):
         items.append({
             "title": f"#{tag['name']}",
             "subtitle": f"{source_indicator} ID: {tag['id']} • Added by: {tag['attachedBy']}",
-            "arg": f"{tag['id']}", # For future tag view
+            "arg": f"{tag['name']}", # For future tag view
             "icon": {"path": "icons/label.png"},
         })
     

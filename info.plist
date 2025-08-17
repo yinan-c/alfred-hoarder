@@ -29,6 +29,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>22A57D68-626C-4423-BEE3-7467FD9E5CB2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F7461A7F-4055-4C29-906B-6492FA8C3A46</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</key>
 		<array>
 			<dict>
@@ -78,11 +91,24 @@
 				<false/>
 			</dict>
 		</array>
+		<key>423249AC-B294-4902-BDFF-D8C6B44FF48E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>22A57D68-626C-4423-BEE3-7467FD9E5CB2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>629CBC40-4B4A-4B3A-AB9C-6F6195FC9DF4</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B81A6337-E9B2-4748-9447-D3AFA0F044AF</string>
+				<string>F7461A7F-4055-4C29-906B-6492FA8C3A46</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -112,6 +138,33 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B31CCC1D-7964-409A-82A3-60284D2B3941</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>694EA87B-F3AD-4BB8-96C3-B84799296959</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>261C6176-221E-44AC-AFF1-0BDED62833DC</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>5CA0BF28-F018-4F10-8A46-4CF61E95993B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>96FA58A0-FD25-42EB-AE1D-3A8DBCF0AE48</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -267,6 +320,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>B81A6337-E9B2-4748-9447-D3AFA0F044AF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F7461A7F-4055-4C29-906B-6492FA8C3A46</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B31CCC1D-7964-409A-82A3-60284D2B3941</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -671,6 +737,58 @@ rm -f response_body.tmp</string>
 				<string></string>
 				<key>script</key>
 				<string>export PYTHONPATH='./libs/'
+# Extract action and ID from the argument
+action=$(echo "$1" | cut -d':' -f1)
+id=$(echo "$1" | cut -d':' -f2)
+
+/usr/bin/python3 link-info.py "$id" --tags</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>629CBC40-4B4A-4B3A-AB9C-6F6195FC9DF4</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
 
 /usr/bin/python3 link-info.py "$1"</string>
 				<key>scriptargtype</key>
@@ -762,58 +880,6 @@ rm -f response_body.tmp</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>export PYTHONPATH='./libs/'
-# Extract action and ID from the argument
-action=$(echo "$1" | cut -d':' -f1)
-id=$(echo "$1" | cut -d':' -f2)
-
-/usr/bin/python3 link-info.py "$id" --tags</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>629CBC40-4B4A-4B3A-AB9C-6F6195FC9DF4</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>browser</key>
 				<string></string>
 				<key>skipqueryencode</key>
@@ -831,44 +897,6 @@ id=$(echo "$1" | cut -d':' -f2)
 			<string>EF3D6F1E-02D6-4871-9734-6D864BB0DEF2</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>8E5C7F25-D6EE-4A37-B7C0-E3FB41C85F9C</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>ECE20F5B-1DF1-443E-ABCB-F38B05CB6A3A</string>
-			<key>version</key>
-			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -918,6 +946,44 @@ id=$(echo "$1" | cut -d':' -f2)
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>17CB1E6B-9582-4A10-8B72-D92E87143017</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>8E5C7F25-D6EE-4A37-B7C0-E3FB41C85F9C</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>ECE20F5B-1DF1-443E-ABCB-F38B05CB6A3A</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -1058,6 +1124,207 @@ id=$(echo "$1" | cut -d':' -f2)
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>694EA87B-F3AD-4BB8-96C3-B84799296959</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>tags</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching for tags ...</string>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
+
+/usr/bin/python3 show-tags.py "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Show tags</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>22A57D68-626C-4423-BEE3-7467FD9E5CB2</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>tags</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>423249AC-B294-4902-BDFF-D8C6B44FF48E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching for bookmark with tag ...</string>
+				<key>script</key>
+				<string>export PYTHONPATH='./libs/'
+
+/usr/bin/python3 show-tag-bookmarks.py "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Show bookmark with tag</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F7461A7F-4055-4C29-906B-6492FA8C3A46</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>tags</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>5CA0BF28-F018-4F10-8A46-4CF61E95993B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>http*</string>
+						<key>outputlabel</key>
+						<string>open url</string>
+						<key>uid</key>
+						<string>261C6176-221E-44AC-AFF1-0BDED62833DC</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>:action:back</string>
+						<key>outputlabel</key>
+						<string>go back</string>
+						<key>uid</key>
+						<string>96FA58A0-FD25-42EB-AE1D-3A8DBCF0AE48</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>B31CCC1D-7964-409A-82A3-60284D2B3941</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># [Hoarder Workflow](https://github.com/yinan-c/alfred-hoarder)
@@ -1099,9 +1366,9 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 		<key>17CB1E6B-9582-4A10-8B72-D92E87143017</key>
 		<dict>
 			<key>xpos</key>
-			<real>1010</real>
+			<real>1235</real>
 			<key>ypos</key>
-			<real>535</real>
+			<real>405</real>
 		</dict>
 		<key>1AFBA318-1D54-4312-94C6-0563C26A6027</key>
 		<dict>
@@ -1109,6 +1376,13 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 			<real>615</real>
 			<key>ypos</key>
 			<real>695</real>
+		</dict>
+		<key>22A57D68-626C-4423-BEE3-7467FD9E5CB2</key>
+		<dict>
+			<key>xpos</key>
+			<real>320</real>
+			<key>ypos</key>
+			<real>1070</real>
 		</dict>
 		<key>2347C2BD-A2D8-49C7-91F9-0E3DC1CDB7DD</key>
 		<dict>
@@ -1138,6 +1412,13 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 			<key>ypos</key>
 			<real>240</real>
 		</dict>
+		<key>423249AC-B294-4902-BDFF-D8C6B44FF48E</key>
+		<dict>
+			<key>xpos</key>
+			<real>100</real>
+			<key>ypos</key>
+			<real>1070</real>
+		</dict>
 		<key>4F423047-B2BA-419F-B10A-D4BCE7A7DEB3</key>
 		<dict>
 			<key>xpos</key>
@@ -1145,12 +1426,19 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 			<key>ypos</key>
 			<real>695</real>
 		</dict>
+		<key>5CA0BF28-F018-4F10-8A46-4CF61E95993B</key>
+		<dict>
+			<key>xpos</key>
+			<real>2095</real>
+			<key>ypos</key>
+			<real>1075</real>
+		</dict>
 		<key>629CBC40-4B4A-4B3A-AB9C-6F6195FC9DF4</key>
 		<dict>
 			<key>xpos</key>
 			<real>1240</real>
 			<key>ypos</key>
-			<real>275</real>
+			<real>270</real>
 		</dict>
 		<key>66687379-E345-44A1-BA93-0B3758D1862F</key>
 		<dict>
@@ -1158,6 +1446,13 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 			<real>1000</real>
 			<key>ypos</key>
 			<real>55</real>
+		</dict>
+		<key>694EA87B-F3AD-4BB8-96C3-B84799296959</key>
+		<dict>
+			<key>xpos</key>
+			<real>2100</real>
+			<key>ypos</key>
+			<real>910</real>
 		</dict>
 		<key>7E864B38-25A5-4BDC-981D-5C0CF9685A1A</key>
 		<dict>
@@ -1173,6 +1468,13 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 			<key>ypos</key>
 			<real>530</real>
 		</dict>
+		<key>B31CCC1D-7964-409A-82A3-60284D2B3941</key>
+		<dict>
+			<key>xpos</key>
+			<real>1795</real>
+			<key>ypos</key>
+			<real>1080</real>
+		</dict>
 		<key>B5698C6A-4CB9-464A-8F07-431CB1DD16FF</key>
 		<dict>
 			<key>xpos</key>
@@ -1183,9 +1485,9 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 		<key>B81A6337-E9B2-4748-9447-D3AFA0F044AF</key>
 		<dict>
 			<key>xpos</key>
-			<real>1495</real>
+			<real>1240</real>
 			<key>ypos</key>
-			<real>570</real>
+			<real>550</real>
 		</dict>
 		<key>CEB88532-41DA-4FEE-827D-29AA1F78530C</key>
 		<dict>
@@ -1242,6 +1544,13 @@ Setup an API key on `{hoarder_url}/settings/api-keys`.
 			<real>805</real>
 			<key>ypos</key>
 			<real>245</real>
+		</dict>
+		<key>F7461A7F-4055-4C29-906B-6492FA8C3A46</key>
+		<dict>
+			<key>xpos</key>
+			<real>1520</real>
+			<key>ypos</key>
+			<real>1075</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
