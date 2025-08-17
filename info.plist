@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.yinanchen.hoarder</string>
+	<string>net.yinanchen.hoarder</string>
 	<key>connections</key>
 	<dict>
 		<key>1AFBA318-1D54-4312-94C6-0563C26A6027</key>
@@ -1060,19 +1060,33 @@ id=$(echo "$1" | cut -d':' -f2)
 		</dict>
 	</array>
 	<key>readme</key>
-	<string># Hoarder Workflow
+	<string># [Hoarder Workflow](https://github.com/yinan-c/alfred-hoarder)
 
-Hoarder is a self-hosted bookmark app with Al automatic tagging and full text search.
+Hoarder (now [Karakeep](https://github.com/karakeep-app/karakeep)) is a self-hosted bookmark app with AI automatic tagging and full text search.
 
-This workflow requires Hoarder API to work. It can list and full text search your bookmarks based on title, tags, description, cached content and note!
+This workflow can list and full text search your bookmarks based on title, tags, description, cached content and note!
 
-`Hoarder` + keyword to full text search, `Hoard` to hoard (Add links and notes)
+## Setup
 
- - ⏎ : Open link directly
- - ⌘+⏎: Copy link to clipboard
- - ⌥+⏎: Open in your Hoarder server
- - ⌃+⏎: View and control (Favorite/Archive/Delete)
- - Shift+⏎: Copy markdown link</string>
+This workflow requires Hoarder/Karakeep URL and its API key.
+
+[Self-host](https://docs.karakeep.app/Installation/docker) your own instance or use [official instance](https://cloud.karakeep.app/signin).
+
+Setup an API key on `{hoarder_url}/settings/api-keys`.
+
+## Usage
+
+`hoarder` + keyword to full text search, `hoard` to hoard (add links and notes).
+
+ - &lt;kbd&gt;↩&lt;/kbd&gt; : Open link directly
+
+ - &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Copy link to clipboard
+
+ - &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Open in your Hoarder server
+
+ - &lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: View and control (Favorite/Archive/Delete)
+
+ - &lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Copy markdown link</string>
 	<key>uidata</key>
 	<dict>
 		<key>0D931E97-CE7D-486A-883A-3EA7B2C3AFDD</key>
@@ -1240,14 +1254,14 @@ This workflow requires Hoarder API to work. It can list and full text search you
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
-				<false/>
+				<true/>
 				<key>trim</key>
 				<true/>
 			</dict>
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Keyword to Search</string>
+			<string>Keyword to search</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -1261,14 +1275,14 @@ This workflow requires Hoarder API to work. It can list and full text search you
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
-				<false/>
+				<true/>
 				<key>trim</key>
 				<true/>
 			</dict>
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Keyword to Add</string>
+			<string>Keyword to add</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -1280,14 +1294,14 @@ This workflow requires Hoarder API to work. It can list and full text search you
 				<key>default</key>
 				<string></string>
 				<key>placeholder</key>
-				<string>https://hoarder.demo</string>
+				<string>https://cloud.karakeep.app</string>
 				<key>required</key>
 				<true/>
 				<key>trim</key>
 				<true/>
 			</dict>
 			<key>description</key>
-			<string></string>
+			<string>Self-hosted instance URL or official app URL</string>
 			<key>label</key>
 			<string>Hoarder URL</string>
 			<key>type</key>
@@ -1308,7 +1322,7 @@ This workflow requires Hoarder API to work. It can list and full text search you
 				<true/>
 			</dict>
 			<key>description</key>
-			<string></string>
+			<string>Setup on {hoarder_url}/settings/api-keys</string>
 			<key>label</key>
 			<string>Hoarder API KEY</string>
 			<key>type</key>
@@ -1329,17 +1343,19 @@ This workflow requires Hoarder API to work. It can list and full text search you
 				<true/>
 			</dict>
 			<key>description</key>
-			<string>Please enter a valid number</string>
+			<string>Please enter an integer for the number of tags in title, 0 to disable</string>
 			<key>label</key>
-			<string>Shown Tags in Tiltle</string>
+			<string>Shown tags in tiltle</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
 			<string>TAGS_SHOWN_COUNT</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>1.3</string>
+	<string>1.3.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/yinan-c/alfred-hoarder</string>
 </dict>
